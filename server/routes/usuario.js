@@ -91,24 +91,7 @@ app.delete('/usuario/:id', [verificaToken, verificaAdmi_Role], (req, res) => {
         estado: 'false'
     }
 
-    // Usuario.findByIdAndRemove(id, (err, usuarioBorrado) => {
-
-    //     if (err) {
-
-    //         return res.status(400).json({
-    //             ok: false,
-    //             err
-    //         });
-    //     }
-
-    //     res.json({
-    //         ok: true,
-    //         usuario: usuarioBorrado
-    //     });
-
-    // });
-
-    Usuario.findByIdAndUpdate(id, cambiarEstado, { new: true }, (err, usuarioDB) => {
+    Usuario.findByIdAndRemove(id, (err, usuarioBorrado) => {
 
         if (err) {
 
@@ -120,10 +103,27 @@ app.delete('/usuario/:id', [verificaToken, verificaAdmi_Role], (req, res) => {
 
         res.json({
             ok: true,
-            usuario: usuarioDB
+            usuario: usuarioBorrado
         });
 
     });
+
+    // Usuario.findByIdAndUpdate(id, cambiarEstado, { new: true }, (err, usuarioDB) => {
+
+    //     if (err) {
+
+    //         return res.status(400).json({
+    //             ok: false,
+    //             err
+    //         });
+    //     }
+
+    //     res.json({
+    //         ok: true,
+    //         usuario: usuarioDB
+    //     });
+
+    // });
 
 });
 
